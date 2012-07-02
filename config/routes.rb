@@ -14,6 +14,7 @@ Kistitechgroup::Application.routes.draw do
 
   #get "static_pages/about"
 
+  resources :users
   resources :talks
 
   # The priority is based upon order of creation:
