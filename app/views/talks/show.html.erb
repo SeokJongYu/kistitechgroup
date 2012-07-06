@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render 'attend_form' if signed_in? %>
+
 <p>
   <b>Name:</b>
   <%= @talk.name %>
@@ -23,6 +25,15 @@
 <p>
   <b>Meetingdate:</b>
   <%= @talk.meetingdate %>
+</p>
+
+<p>
+	<b>Attendees</b>
+	<ul>
+	<% @talk.attendance_lists.each do |user| %>
+
+	<% end %>
+	</ul>
 </p>
 
 

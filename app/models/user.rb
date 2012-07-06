@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
+  has_many :followed_talks, through: :attendance_lists, source: :followed
+
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -23,11 +26,17 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  
+
+  def following?(talk)
+      attendance_lists.find_by_talk_id(talk.id)
+  end
+
   private
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
+  
+
   
 end

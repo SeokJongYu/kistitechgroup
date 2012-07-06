@@ -1,31 +1,38 @@
+<% provide(:title, "Schedule") %>
 <h1>Listing talks</h1>
 
-<table>
+<table class="table table-striped">
+<thead>
   <tr>
+	<th>Meeting date</th>
     <th>Name</th>
     <th>Title</th>
-    <th>Desc</th>
-    <th>Url</th>
-    <th>Meetingdate</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
+</thead>
+<tbody>
 <% @talks.each do |talk| %>
   <tr>
+    <td><%= talk.meetingdate %></td>
     <td><%= talk.name %></td>
     <td><%= talk.title %></td>
-    <td><%= talk.desc %></td>
-    <td><%= talk.url %></td>
-    <td><%= talk.meetingdate %></td>
     <td><%= link_to 'Show', talk %></td>
+
+  <% if current_user.admin? %>
     <td><%= link_to 'Edit', edit_talk_path(talk) %></td>
     <td><%= link_to 'Destroy', talk, confirm: 'Are you sure?', method: :delete %></td>
+  <% else %>
+    <td/>
+    <td/>
+  <% end %>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
-
-<%= link_to 'New Talk', new_talk_path %>
+<%=link_to t('.new', :default => t("helpers.links.new")),
+            new_talk_path,
+            :class => 'btn btn-primary' %>

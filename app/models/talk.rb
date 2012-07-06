@@ -14,4 +14,15 @@
 
 class Talk < ActiveRecord::Base
   attr_accessible :desc, :meetingdate, :name, :title, :url
+  has_many :attendance_lists, foreign_key: "talk_id", dependent: :destroy
+
+
+  def attend!(user)
+    attendance_lists.create!(user_id: user.id)
+  end
+
+  def unattend!(user)
+    attendance_lists.find_by_user_id(user.id).destroy
+  end
+  
 end

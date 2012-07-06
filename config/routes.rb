@@ -1,10 +1,14 @@
 Kistitechgroup::Application.routes.draw do
 
+  resources :attendance_lists , only: [:create, :destroy]
+
   root to: 'static_pages#home'
   
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/signup', to: 'users#new'
+
+  match '/attend', to: 'attendance_lists#create'
 
   #get "static_pages/home"
 
@@ -13,7 +17,12 @@ Kistitechgroup::Application.routes.draw do
   #get "static_pages/about"
 
   resources :users
-  resources :talks
+  #resources :talks
+  resources :talks do
+      member do
+        get :attend, :unattend
+      end
+    end
   
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin',  to: 'sessions#new'

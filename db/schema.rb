@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703144241) do
+ActiveRecord::Schema.define(:version => 20120705114112) do
+
+  create_table "attendance_lists", :force => true do |t|
+    t.integer  "talk_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "attendance_lists", ["talk_id", "user_id"], :name => "index_attendance_lists_on_talk_id_and_user_id", :unique => true
+  add_index "attendance_lists", ["talk_id"], :name => "index_attendance_lists_on_talk_id"
+  add_index "attendance_lists", ["user_id"], :name => "index_attendance_lists_on_user_id"
 
   create_table "talks", :force => true do |t|
     t.string   "name"

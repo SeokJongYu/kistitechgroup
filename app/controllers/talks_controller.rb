@@ -57,7 +57,7 @@ class TalksController < ApplicationController
   # PUT /talks/1.json
   def update
     @talk = Talk.find(params[:id])
-
+    @talk.users = User.find(params[:user]) if params[:user]
     respond_to do |format|
       if @talk.update_attributes(params[:talk])
         format.html { redirect_to @talk, notice: 'Talk was successfully updated.' }
