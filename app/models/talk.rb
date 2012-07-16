@@ -17,6 +17,10 @@ class Talk < ActiveRecord::Base
   has_many :attendance_lists, foreign_key: "talk_id", dependent: :destroy
 
 
+  def check_user(user)
+    attendance_lists.find_by_user_id(user.id)
+  end
+
   def attend!(user)
     attendance_lists.create!(user_id: user.id)
   end

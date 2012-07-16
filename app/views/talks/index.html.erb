@@ -1,11 +1,12 @@
 <% provide(:title, "Schedule") %>
-<h1>Listing talks</h1>
+
+<h1>List of Talks</h1>
 
 <table class="table table-striped">
 <thead>
   <tr>
 	<th>Meeting date</th>
-    <th>Name</th>
+    <th>Speaker</th>
     <th>Title</th>
     <th></th>
     <th></th>
@@ -18,7 +19,10 @@
     <td><%= talk.meetingdate %></td>
     <td><%= talk.name %></td>
     <td><%= talk.title %></td>
-    <td><%= link_to 'Show', talk %></td>
+    <td>
+       <%= link_to t('.show', :default => t("helpers.links.show")),
+            talk_path(talk), :class => 'btn btn-primary' %>
+    </td>
 
   <% if current_user.admin? %>
     <td><%= link_to 'Edit', edit_talk_path(talk) %></td>
@@ -33,6 +37,9 @@
 </table>
 
 <br />
+
+<% if current_user.admin? %>
 <%=link_to t('.new', :default => t("helpers.links.new")),
             new_talk_path,
             :class => 'btn btn-primary' %>
+<% end %>

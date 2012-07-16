@@ -14,7 +14,7 @@ class TalksController < ApplicationController
   # GET /talks/1.json
   def show
     @talk = Talk.find(params[:id])
-
+    @users = @talk.attendance_lists
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @talk }

@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
-  has_many :followed_talks, through: :attendance_lists, source: :followed
+
+  has_many :followed_talks, through: :attendance_lists
 
 
   before_save { |user| user.email = email.downcase }
