@@ -36,17 +36,23 @@
   				<strong>Attendees:</strong>
 			</td>
 			<td>
-				<ul>
+				<table class="table table-striped">
+					<tbody>
+
 					<% if @users %>
 
 					<% @users.each do |attend| %>
-					  <li>
-				      <%= gravatar_for attend.user %>
-					  <%= attend.user.name %>
-					  </li>
+					  <tr>
+						<td>
+				        <%= gravatar_for attend.user size: 30 %>
+						<%= attend.user.name %>
+						</td>
+					</tr>
+
 				    <% end %>
 					<% end %>
-				</ul>
+					</tbody>
+				</table>
 			</td>
 		</tr>
 		<tr>
