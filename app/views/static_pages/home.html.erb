@@ -1,12 +1,19 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
-  <h1>KISTI Tech Group</h1>
 
-  <h2>
-	Interesting Technologies are new language, developing frameworks, web technology (HTML5)
-  </h2>
+<section id="typography">
+<div class="well">
+	<div class="row-fluid">
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+		
+	      	  <h1>Beyond the code</h1>
+
+			  <h3>
+				Interesting Technologies are new language, developing frameworks, and web technology
+			  </h3>
+			  
+			  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+		
+
+	</div>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+</section>

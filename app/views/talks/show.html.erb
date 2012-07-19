@@ -55,25 +55,25 @@
 				</table>
 			</td>
 		</tr>
-		<tr>
-			<td>
-  				<strong>Video:</strong>
-			</td>
-			<td>
-				<%= raw(@talk.url) %>
-			</td>
-		</tr>
+		
 		
 	</tbody>
 </table>
 
+<div align='center'>
+<%= raw(@talk.url) %>
+</div>
 
-
-<%= render 'attend_form' if signed_in? and attendee?(@talk) %>
 
 <div class="form-actions">
+  <% if signed_in? and attendee?(@talk) %>
+
+  <%= button_to 'Attend', attendance_lists_path(talk_id: @talk), class: "btn btn-success" %>
+  <% end %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               talks_path, :class => 'btn btn-info'  %>
+
+
 
 <% if current_user.admin? %>
 
